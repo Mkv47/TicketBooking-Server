@@ -114,3 +114,41 @@ Admin dashboard available at /admin
 # Promo Codes
 - SAVE10
 - EVENT20
+#Stripe Test Credit Cards
+
+Stripe provides test card numbers that you can use during testing to simulate payments. These cards do not trigger real transactions.
+
+Common successful test cards:
+
+Visa: 4242 4242 4242 4242
+
+Mastercard: 5555 5555 5555 4444
+
+American Express: 3782 822463 10005
+
+Discover: 6011 1111 1111 1117
+
+
+Cards for simulating failures or errors:
+
+Always declined: 4000 0000 0000 0002
+
+Insufficient funds: 4000 0000 0000 9995
+
+Expired card: 4000 0000 0000 0069
+
+Incorrect CVC: 4000 0000 0000 0127
+
+3D Secure required: 4000 0027 6000 3184
+
+
+Additional required values:
+
+Expiration Date: Any valid future date (e.g. 12/30)
+
+CVC: Any 3-digit number (e.g. 123)
+
+ZIP Code: Any 5-digit number (e.g. 12345)
+
+
+For full reference, visit: https://stripe.com/docs/testing
