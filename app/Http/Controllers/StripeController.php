@@ -11,6 +11,7 @@ use App\Models\Booking;
 use App\Mail\BookingConfirmation;
 use App\Mail\AdminBookingNotification;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\MailException;
 use Illuminate\Support\Facades\Validator;
 
 class StripeController extends Controller
@@ -96,33 +97,36 @@ class StripeController extends Controller
     public function success(Request $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
-
+    
         $sessionId = $request->query('session_id');
         if (!$sessionId) {
             return redirect('/');
         }
-
+    
         $session = Session::retrieve($sessionId);
-
+    
         $bookingDataJson = $session->metadata->booking ?? null;
         if (!$bookingDataJson) {
             return redirect('/');
         }
-
+    
         $bookingData = json_decode($bookingDataJson, true);
-
+    
         // Store booking
         $booking = Booking::create($bookingData);
-
-        // Send emails
+    
+        // Prepare email error message container
+        $emailErrorMessage = null;
+    
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking));
             Mail::to(env('MAIL_ADMIN_ADDRESS'))->send(new AdminBookingNotification($booking));
         } catch (\Exception $e) {
-            // Log and/or handle mail errors gracefully, maybe pass a warning message to the view
-            \Log::error('Mail sending failed: ' . $e->getMessage());
+            // Log error or ignore as you wish
+            $emailErrorMessage = "⚠️ Mailtrap or mail configuration is not set correctly.";
         }
-
+    
+        // Prepare QR code with detailed booking info
         $qrData = "Booking Confirmation\n";
         $qrData .= "ID: {$booking->id}\n";
         $qrData .= "Name: {$booking->name}\n";
@@ -137,20 +141,20 @@ class StripeController extends Controller
         if ($booking->promo_code) {
             $qrData .= "Promo Code: {$booking->promo_code}\n";
         }
-
-        // Generate QR
+    
         $qr = Builder::create()
             ->writer(new PngWriter())
             ->data($qrData)
             ->size(200)
             ->build();
-
+    
         $base64 = base64_encode($qr->getString());
-
+    
         return view('stripe.success', [
             'qrCode' => $base64,
             'message' => 'Thank you for your payment!',
             'booking' => $booking,
+            'emailError' => $emailErrorMessage,  // Pass error message to view
         ]);
     }
 

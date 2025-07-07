@@ -12,6 +12,10 @@
 
     <br><br>
     <a href="/">Return Home</a>
+    
+    @if(!empty($emailError))
+    <p style="color:orange;">{{ $emailError }}</p>
+    @endif
 
 </body>
 </html>
