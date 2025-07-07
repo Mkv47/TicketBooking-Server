@@ -20,7 +20,7 @@ This is a Laravel-based ticket booking application with features including booki
 
 ### 1. Clone the Repository
 ```bash
-git clone <https://github.com/Mkv47/TicketBooking-Server/>
+git clone <https://github.com/Mkv47/TicketBooking-Server.git> // or dowmload the .zip file
 cd <your-project-folder-path>
 ```
 2. Install PHP dependencies
