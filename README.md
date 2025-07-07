@@ -32,7 +32,10 @@ composer install
 npm install
 npm run dev     // this should run while the app is running 
 ```
-4. Configure Environment
+4.  Configure the database
+make sure that MySQL is installed and running you can you the start_server_win.ps1 to quickly format that data base to the required state or do it manually using th schema.sql
+
+5.  Configure Environment
 Copy .env.example to a new file.env
 Set your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 Configure mail with Mailtrap credentials for email testing:
@@ -59,14 +62,14 @@ STRIPE_KEY=your_stripe_publishable_key
 STRIPE_SECRET=your_stripe_secret_key
 ```
 
-5. Run Migrations & Seed Database
+6. Run Migrations & Seed Database
 
 ```bash
 php artisan migrate --seed
 ```
 This will create the tables and seed an admin user.
 
-6. Run the Application
+7. Run the Application
 ```bash
 php artisan serve
 //or you can use the start_server_win.ps1 this will stat both servers and be much quicker for testing 
