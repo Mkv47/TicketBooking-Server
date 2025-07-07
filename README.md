@@ -69,14 +69,15 @@ This will create the tables and seed an admin user.
 6. Run the Application
 ```bash
 php artisan serve
+//or you can use the start_server_win.ps1 this will stat both servers and be much quicker for testing 
 ```
 Access at http://localhost:8000
 
 Admin Login
 Use the seeded admin user:
 ```bash
-Email: adminuser@text.com
-Password: admin123
+Email: adminuser@text.com this can be changed in the .env file
+Password: admin123 // this is the password 
 ```
 Admin dashboard available at /admin
 
