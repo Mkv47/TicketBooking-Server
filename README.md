@@ -114,7 +114,7 @@ Admin dashboard available at /admin
 # Promo Codes
 - SAVE10
 - EVENT20
-#Stripe Test Credit Cards
+# Stripe Test Credit Cards
 
 Stripe provides test card numbers that you can use during testing to simulate payments. These cards do not trigger real transactions.
 
