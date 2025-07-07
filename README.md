@@ -30,7 +30,7 @@ composer install
 3. Install Node dependencies and build assets
 ```bash
 npm install
-npm run dev
+npm run dev     // this should run while the app is running 
 ```
 4. Configure Environment
 Copy .env.example to .env
