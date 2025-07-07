@@ -61,7 +61,11 @@ Configure Stripe keys in .env (use Stripe test keys):
 STRIPE_KEY=your_stripe_publishable_key
 STRIPE_SECRET=your_stripe_secret_key
 ```
-
+Run:
+```bash
+php artisan config:clear
+```
+To confirm .env changes
 6. Run Migrations & Seed Database
 
 ```bash
