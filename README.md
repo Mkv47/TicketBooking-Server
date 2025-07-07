@@ -77,48 +77,29 @@ Password: admin123
 ```
 Admin dashboard available at /admin
 
-Features
-Booking
-Users can book tickets selecting ticket type and applying promo codes.
+##Features
 
-Client-side and server-side validation.
+# Booking
+- Users can book tickets by selecting ticket types and applying promo codes.
+- Client-side and server-side validation implemented.
+- Dynamic price updates based on selected promo codes.
+- Confirmation emails sent to users and admins via Mailtrap.
 
-Dynamic price updates with promo codes.
+# 🛠️ Admin Dashboard
+- View all bookings.
+- Filter bookings by ticket type.
+- Export all bookings as CSV.
+- See summary: total bookings and revenue.
 
-Confirmation emails sent to users and admins via Mailtrap.
+# Payment
+- Stripe sandbox integration for simulated payments (no real payment needed).
 
-Admin Dashboard
-View all bookings.
+# Notes
+- Mailtrap is used for email testing; real email sending is disabled.
+- Stripe uses test mode keys; no real payment processing.
+- Passwords are securely hashed.
+- Promo codes and ticket prices are hardcoded (can be extended if needed).
 
-Filter bookings by ticket type.
-
-Export bookings as CSV.
-
-See total bookings count and revenue summary.
-
-Payment
-Stripe sandbox integration for payment simulation.
-
-Notes
-Mailtrap is used for email testing; real email sending is disabled.
-
-Stripe uses test mode keys; no real payment processing.
-
-Passwords are hashed securely.
-
-Promo codes and prices are hardcoded but can be extended.
-
-Troubleshooting
-If migrations fail, check your .env database settings.
-
-If emails don't appear in Mailtrap, verify your Mailtrap credentials.
-
-For frontend asset issues, run npm run dev again.
-
-Clear cache if needed:
-
-php artisan config:clear
-php artisan cache:clear
-
-License
-MIT
+# Promo Codes
+- SAVE10
+- EVENT20
