@@ -1,61 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TicketBooking Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+This is a Laravel-based ticket booking application with features including booking management, admin dashboard, email notifications, and Stripe payment integration (sandbox). It supports promo codes, client-side validation, and admin authentication.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
+- PHP 8.x
+- Composer
+- MySQL
+- Node.js & npm (for frontend assets)
+- Laravel 10.x (tested)
+- Mailtrap account for email testing
+- Stripe sandbox account for payment simulation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Setup Instructions
 
-## Learning Laravel
+### 1. Clone the Repository
+```bash
+git clone <your-repo-url>
+cd <your-project-folder>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Install PHP dependencies
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Install Node dependencies and build assets
 
-## Laravel Sponsors
+npm install
+npm run dev
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Configure Environment
+Copy .env.example to .env
 
-### Premium Partners
+Set your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Configure mail with Mailtrap credentials for email testing:
 
-## Contributing
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_mailtrap_username
+MAIL_PASSWORD=your_mailtrap_password
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=no-reply@example.com
+MAIL_FROM_NAME="TicketBooking"
+MAIL_ADMIN_ADDRESS=admin@example.com
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Configure Stripe keys in .env (use Stripe test keys):
 
-## Code of Conduct
+STRIPE_KEY=your_stripe_publishable_key
+STRIPE_SECRET=your_stripe_secret_key
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. Run Migrations & Seed Database
 
-## Security Vulnerabilities
+php artisan migrate --seed
+This will create the tables and seed an admin user.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. Run the Application
 
-## License
+php artisan serve
+Access at http://localhost:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Admin Login
+Use the seeded admin user:
+
+Email: mohammedad.work@gmail.com
+
+Password: admin123
+
+Admin dashboard available at /admin
+
+Features
+Booking
+Users can book tickets selecting ticket type and applying promo codes.
+
+Client-side and server-side validation.
+
+Dynamic price updates with promo codes.
+
+Confirmation emails sent to users and admins via Mailtrap.
+
+Admin Dashboard
+View all bookings.
+
+Filter bookings by ticket type.
+
+Export bookings as CSV.
+
+See total bookings count and revenue summary.
+
+Payment
+Stripe sandbox integration for payment simulation.
+
+Notes
+Mailtrap is used for email testing; real email sending is disabled.
+
+Stripe uses test mode keys; no real payment processing.
+
+Passwords are hashed securely.
+
+Promo codes and prices are hardcoded but can be extended.
+
+Troubleshooting
+If migrations fail, check your .env database settings.
+
+If emails don't appear in Mailtrap, verify your Mailtrap credentials.
+
+For frontend asset issues, run npm run dev again.
+
+Clear cache if needed:
+
+php artisan config:clear
+php artisan cache:clear
+
+License
+MIT
