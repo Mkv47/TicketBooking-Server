@@ -37,6 +37,9 @@ Copy .env.example to .env
 Set your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 Configure mail with Mailtrap credentials for email testing:
 
+Note if your using Mailtrape demo domain the email for the admin and the email of the booking user may need to be the same to resive an email on both sides 
+because mailtrap only sends eamil to the email that was used during the creation of the account
+
 ```bash
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
@@ -44,9 +47,9 @@ MAIL_PORT=2525
 MAIL_USERNAME=your_mailtrap_username
 MAIL_PASSWORD=your_mailtrap_password
 MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=no-reply@example.com
+MAIL_FROM_ADDRESS=no-reply@demomailtrap.co // if another domain is used this domain needs to be changed
 MAIL_FROM_NAME="TicketBooking"
-MAIL_ADMIN_ADDRESS=admin@example.com
+MAIL_ADMIN_ADDRESS=admin@example.com // this needs to be changed to the actual admin
 ```
 
 Configure Stripe keys in .env (use Stripe test keys):
