@@ -33,7 +33,7 @@ npm install
 npm run dev     // this should run while the app is running 
 ```
 4. Configure Environment
-Copy .env.example to .env
+Copy .env.example to a new file.env
 Set your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 Configure mail with Mailtrap credentials for email testing:
 
