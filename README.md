@@ -20,25 +20,24 @@ This is a Laravel-based ticket booking application with features including booki
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/Mkv47/TicketBooking-Server/>
 cd <your-project-folder>
-
+```
 2. Install PHP dependencies
-
+```bash
 composer install
-
+```
 3. Install Node dependencies and build assets
-
+```bash
 npm install
 npm run dev
-
+```
 4. Configure Environment
 Copy .env.example to .env
-
 Set your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
-
 Configure mail with Mailtrap credentials for email testing:
 
+```bash
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
@@ -48,29 +47,34 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=no-reply@example.com
 MAIL_FROM_NAME="TicketBooking"
 MAIL_ADMIN_ADDRESS=admin@example.com
+```
 
 Configure Stripe keys in .env (use Stripe test keys):
 
+```bash
 STRIPE_KEY=your_stripe_publishable_key
 STRIPE_SECRET=your_stripe_secret_key
+```
 
 5. Run Migrations & Seed Database
 
+```bash
 php artisan migrate --seed
+```
 This will create the tables and seed an admin user.
 
 6. Run the Application
-
+```bash
 php artisan serve
+```
 Access at http://localhost:8000
 
 Admin Login
 Use the seeded admin user:
-
-Email: mohammedad.work@gmail.com
-
+```bash
+Email: adminuser@text.com
 Password: admin123
-
+```
 Admin dashboard available at /admin
 
 Features
