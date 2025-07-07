@@ -65,7 +65,7 @@ class BookingController extends Controller
         $booking = Booking::create($validated);
 
         Mail::to($booking->email)->send(new BookingConfirmation($booking));
-        Mail::to(env('MAIL_ADMIN_ADDRESS', 'Mohammedad.work@gmail.com'))->send(new AdminBookingNotification($booking));
+        Mail::to(env('MAIL_ADMIN_ADDRESS'))->send(new AdminBookingNotification($booking));
         
         return response()->json([
             'message' => 'Booking successful!',
