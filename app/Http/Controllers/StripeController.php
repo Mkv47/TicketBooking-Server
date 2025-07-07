@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
 
 class StripeController extends Controller
 {
@@ -38,7 +40,18 @@ class StripeController extends Controller
 
     public function success()
     {
-        return 'Payment success!';
+        $qr = Builder::create()
+            ->writer(new PngWriter())
+            ->data('Payment confirmed. Booking ID: 12345')
+            ->size(200)
+            ->build();
+
+        $base64 = base64_encode($qr->getString());
+
+        return view('stripe.success', [
+            'qrCode' => $base64,
+            'message' => 'Thank you for your payment!',
+        ]);
     }
 
     public function cancel()

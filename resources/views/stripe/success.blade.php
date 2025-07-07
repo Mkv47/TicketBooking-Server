@@ -1,6 +1,17 @@
+<!DOCTYPE html>
+<html>
 <head>
-  <title>Payment Successful!</title>
-  @vite(['resources/css/checkout.css'])
+    <title>Payment Success</title>
 </head>
-<h1>Payment Successful!</h1>
-<p>Thank you for your purchase.</p>
+<body style="text-align:center; font-family: sans-serif;">
+
+    <h1>{{ $message }}</h1>
+    
+    <p>Scan this QR code for your payment details:</p>
+    <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code">
+
+    <br><br>
+    <a href="/">Return Home</a>
+
+</body>
+</html>

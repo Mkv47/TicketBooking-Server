@@ -45,14 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const country = bookingForm.querySelector('select[name="country"]').value;
     const ticket = ticketType.value;
 
-    // Basic required field check
     if (!name || !email || !phone || !country || !ticket) {
       formMessage.textContent = "Please fill in all required fields.";
       formMessage.style.color = "red";
       return;
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       formMessage.textContent = "Please enter a valid email address.";
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Optional: Validate phone (numbers, spaces, plus, etc.)
     const phoneRegex = /^[\d\s()+-]+$/;
     if (!phoneRegex.test(phone)) {
       formMessage.textContent = "Please enter a valid phone number.";
@@ -68,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Everything is valid — proceed
     const formData = new FormData(bookingForm);
 
     axios.post('/booking', formData)
