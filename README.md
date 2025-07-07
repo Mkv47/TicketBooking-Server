@@ -85,7 +85,7 @@ Admin dashboard available at /admin
 - Dynamic price updates based on selected promo codes.
 - Confirmation emails sent to users and admins via Mailtrap.
 
-# 🛠️ Admin Dashboard
+# Admin Dashboard
 - View all bookings.
 - Filter bookings by ticket type.
 - Export all bookings as CSV.
