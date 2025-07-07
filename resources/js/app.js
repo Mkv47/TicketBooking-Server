@@ -66,13 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const formData = new FormData(bookingForm);
-
-    axios.post('/booking', formData)
+      
+    // Build a safe object with only needed fields
+    let dataObj = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      ticket_type: formData.get('ticket_type'),
+      promo_code: formData.get('promo_code'),
+      country: formData.get('country'),
+      organization: formData.get('organization')
+    };
+    
+    axios.post('/stripe/session', dataObj)
       .then(response => {
-        formMessage.style.color = "green";
-        formMessage.textContent = response.data.message || "Booking successful!";
-        bookingForm.reset();
-        updateTotal();
+        if (response.data && response.data.url) {
+          window.location.href = response.data.url;
+        } else {
+          formMessage.textContent = "Unexpected response from server.";
+          formMessage.style.color = "red";
+        }
       })
       .catch(error => {
         formMessage.style.color = "red";
@@ -84,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   });
-
   window.toggleAdminOverlay = function () {
   const overlay = document.getElementById('adminLoginOverlay');
   overlay.classList.toggle('hidden');

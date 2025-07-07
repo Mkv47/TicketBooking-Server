@@ -16,7 +16,7 @@
 
   <div class="container">
     <h2>Event Booking Form</h2>
-    <form id="bookingForm">
+    <form action="/stripe/session" method="POST" id="bookingForm">
       @csrf
 
       <div>

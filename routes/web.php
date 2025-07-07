@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
+
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 Route::post('/get-price', [BookingController::class, 'getPrice']);
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
